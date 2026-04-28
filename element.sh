@@ -47,6 +47,15 @@ else
   # variables match the order of the query items
   IFS='|' read -r ATOMIC_NUMBER NAME SYMBOL TYPE MASS MELTING BOILING <<< "$ELEMENT_INFO"
 
-  # Output the information exactly as stated in the instructions 
+  # Remove any single quotes
+  ATOMIC_NUMBER="${ATOMIC_NUMBER//\'/}"
+  NAME="${NAME//\'/}"
+  SYMBOL="${SYMBOL//\'/}"
+  TYPE="${TYPE//\'/}"
+  MASS="${MASS//\'/}"
+  MELTING="${MELTING//\'/}"
+  BOILING="${BOILING//\'/}"
+
+  # Output the information exactly as stated in the instructions, without excess quotes 
   echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELTING celsius and a boiling point of $BOILING celsius."
 fi
