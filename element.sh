@@ -27,14 +27,14 @@ QUERY="
     e.atomic_number,
     e.name,
     e.symbol,
-    # update type to come from types table, instead. use "t" instead of "p"
+    -- update type to come from types table, instead. use "t" instead of "p"
     t.type,
     p.atomic_mass,
     p.melting_point_celsius,
     p.boiling_point_celsius
   FROM elements e
   JOIN properties p ON e.atomic_number = p.atomic_number
-  # Add join to types table
+  -- Add join to types table
   JOIN types t ON p.type_id = t.type_id 
   WHERE $WHERE;
 "
